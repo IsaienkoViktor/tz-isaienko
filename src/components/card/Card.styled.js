@@ -1,6 +1,21 @@
 import { styled } from "styled-components";
 
 export const CardWrapper = styled.div`
+  /* width: calc((100% - 96px) / 3); */
+`;
+
+export const CardList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+`;
+
+export const CardItem = styled.li`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   width: 380px;
   height: 460px;
   border-radius: 20px;
@@ -9,7 +24,97 @@ export const CardWrapper = styled.div`
     rgba(0, 0, 0, 0.23);
 `;
 
-export const CardList = styled.ul`
+export const CardLogo = styled.img`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transition: transform 150ms ease-in-out;
+  &:focus,
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+export const CardImage = styled.img`
+  margin-top: 10px;
+  margin-bottom: 68px;
+`;
+
+export const CardDivLine = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 380px;
+  height: 8px;
+  background: #ebd8ff;
+  box-shadow: 0px 3.4369285106658936px 2.5776965618133545px 0px #fbf8ff inset,
+    0px 3.4369285106658936px 3.4369285106658936px 0px rgba(0, 0, 0, 0.06),
+    0px -1.7184642553329468px 3.4369285106658936px 0px #ae7be3 inset;
+`;
+
+export const CardAvatar = styled.img`
+  border: 10px solid #ebd8ff;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+`;
+
+export const CardName = styled.span`
+  color: #ebd8ff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+`;
+
+export const CardTweet = styled.span`
+  color: #ebd8ff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+`;
+
+export const CardFollowers = styled.span`
+  color: #ebd8ff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+`;
+
+export const CardButton = styled.button`
+  font-family: Montserrat;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+  color: #373737;
+  display: flex;
+  width: 196px;
+  padding: 14px 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10.311px;
+  background: #ebd8ff;
+  box-shadow: 0px 3.4369285106658936px 3.4369285106658936px 0px
+    rgba(0, 0, 0, 0.25);
+  margin-bottom: 16px;
+  transition: transform 150ms ease-in-out;
+  &:focus,
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+  }
 `;

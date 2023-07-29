@@ -1,12 +1,17 @@
+@import "/node_modules/modern-normalize/modern-normalize.css";
+
 root {
-  --primaryTextColor: #212121;
-  --secondaryTextColor: #566573;
-  --accentColor: #bc8f8f;
-  --bgColor: #fff5ee;
+  --main-text-color: #ebd8ff;
+  --landing-button-text-color: #373737;
   --boxShadow: 1px 4px 6px rgba(0, 0, 0, 0.16), 0px 4px 4px rgba(0, 0, 0, 0.06),
     0px 1px 1px rgba(0, 0, 0, 0.12);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --timingFn: cubic-bezier(0.4, 0, 0.2, 1);
+  --timingFn: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -14,8 +19,7 @@ body {
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   color: var(--primaryTextColor);
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding: 50px;
 }
 
 img {
