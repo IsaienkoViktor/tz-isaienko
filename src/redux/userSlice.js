@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUserThunk } from "./userThunk";
+import { editUserThunk, getUserThunk } from "./userThunk";
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: "users",
   initialState: {
     item: [],
@@ -20,8 +20,31 @@ export const userSlice = createSlice({
       })
       .addCase(getUserThunk.pending, (state) => {
         state.isLoading = true;
+      })
+      .addCase(editUserThunk.fulfilled, (state, { payload }) => {
+        state.item = payload;
+        state.error = null;
+        state.isLoading = false;
       });
   },
 });
 
-export const userSliced = userSlice.reducer;
+const userFilter = createSlice({
+  name: "filter",
+  initialState: {
+    name: "All",
+  },
+  reducers: {
+    setFilter(state, { payload }) {
+      state.filter = payload;
+    },
+  },
+});
+
+
+
+export const filterReducer = userFilter.reducer;
+
+export const { setFilter } = userFilter.actions;
+
+export const userReducer = userSlice.reducer;

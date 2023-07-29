@@ -6,6 +6,8 @@ export const CardWrapper = styled.div`
 
 export const CardList = styled.ul`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 48px;
 `;
@@ -90,6 +92,36 @@ export const CardFollowers = styled.span`
   font-weight: 500;
   line-height: normal;
   text-transform: uppercase;
+`;
+
+export const CardButtonLoadMore = styled.button`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 36px;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+  color: #373737;
+  display: flex;
+  width: 196px;
+  padding: 14px 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10.311px;
+  background: #ebd8ff;
+  box-shadow: 0px 3.4369285106658936px 3.4369285106658936px 0px
+    rgba(0, 0, 0, 0.25);
+  margin-bottom: 16px;
+  transition: transform 150ms ease-in-out;
+  &:focus,
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+  }
 `;
 
 export const CardButton = styled.button`
