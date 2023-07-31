@@ -21,10 +21,24 @@ import { useState } from "react";
 
 export const Card = () => {
   const [cardItems, setCardItems] = useState(3);
-  const [follower, SetFollower] = useState("");
+  const [follower, setFollower] = useState(false);
   const users = useSelector(selectUsers);
 
-  const handleAddFollower = () => {};
+  const [followersCounter, setFollowersCounter] = useState(users.followers);
+
+  const handleClickFollowing = () => {
+    if (follower) {
+      setFollowersCounter(followersCounter - 1);
+    } else {
+      setFollowersCounter(followersCounter + 1);
+    }
+
+    setFollower(!follower);
+  };
+
+  const handleAddFollower = (id) => {
+    const updatingUserFollowers = users.find((user) => user.id === id);
+  };
 
   const handleLOadMore = () => {
     setCardItems((prevCardItems) => prevCardItems + 3);
@@ -51,7 +65,15 @@ export const Card = () => {
                   <CardName>{user}</CardName>
                   <CardTweet>tweets {tweets} </CardTweet>
                   <CardFollowers>followers {followers} </CardFollowers>
-                  <CardButton type="button">Follow</CardButton>
+                  <CardButton
+                    type="button"
+                    style={{
+                      backgroundColor: follower ? "#5CD3A8" : "#EBD8FF",
+                    }}
+                    onClick={handleClickFollowing}
+                  >
+                    {follower ? "Following" : "Follow"}
+                  </CardButton>
                 </CardItem>
               );
             })}
