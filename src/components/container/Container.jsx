@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import { ContainerStyled } from "./Container.styled";
+import { CardWrapper } from "./Wrapper.styled";
 
 export const Container = ({ children }) => {
-  return <ContainerStyled>{children}</ContainerStyled>;
+  return <CardWrapper>{children}</CardWrapper>;
 };
 
 Container.propTypes = {
