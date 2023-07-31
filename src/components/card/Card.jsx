@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUsers } from "../../redux/userSelector";
 import {
   CardAvatar,
@@ -18,26 +18,35 @@ import logo from "/src/project_svg/logo.svg";
 import imgCard from "../../project_svg/img@1x.png";
 import imgCardRetina from "../../project_svg/img@2x.png";
 import { useState } from "react";
+import { editUserThunk, getUserThunk } from "../../redux/userThunk";
 
 export const Card = () => {
+  const dispatch = useDispatch();
   const [cardItems, setCardItems] = useState(3);
-  const [follower, setFollower] = useState(false);
   const users = useSelector(selectUsers);
 
-  const [followersCounter, setFollowersCounter] = useState(users.followers);
-
-  const handleClickFollowing = () => {
-    if (follower) {
-      setFollowersCounter(followersCounter - 1);
+  const handleFollowClick = (id, followers, following) => {
+    if (following) {
+      dispatch(
+        editUserThunk({
+          id,
+          user: {
+            following: false,
+            followers: followers + 1,
+          },
+        })
+      ).then(() => dispatch(getUserThunk()));
     } else {
-      setFollowersCounter(followersCounter + 1);
+      dispatch(
+        editUserThunk({
+          id,
+          user: {
+            following: true,
+            followers: followers - 1,
+          },
+        })
+      ).then(() => dispatch(getUserThunk()));
     }
-
-    setFollower(!follower);
-  };
-
-  const handleAddFollower = (id) => {
-    const updatingUserFollowers = users.find((user) => user.id === id);
   };
 
   const handleLOadMore = () => {
@@ -50,33 +59,37 @@ export const Card = () => {
         <CardList>
           {users
             .slice(0, cardItems)
-            .map(({ user, followers, tweets, avatar, id }) => {
-              return (
-                <CardItem key={id}>
-                  <a href="">
-                    <CardLogo src={logo} />
-                  </a>
-                  <CardImage srcSet={`${imgCard} 1x, ${imgCardRetina} 2x`} />
-                  <div>
-                    <CardDivLine>
-                      <CardAvatar src={avatar} />
-                    </CardDivLine>
-                  </div>
-                  <CardName>{user}</CardName>
-                  <CardTweet>tweets {tweets} </CardTweet>
-                  <CardFollowers>followers {followers} </CardFollowers>
-                  <CardButton
-                    type="button"
-                    style={{
-                      backgroundColor: follower ? "#5CD3A8" : "#EBD8FF",
-                    }}
-                    onClick={handleClickFollowing}
-                  >
-                    {follower ? "Following" : "Follow"}
-                  </CardButton>
-                </CardItem>
-              );
-            })}
+            .map(
+              ({ user, followers, tweets, avatar, id, following = false }) => {
+                return (
+                  <CardItem key={id}>
+                    <a href="">
+                      <CardLogo src={logo} />
+                    </a>
+                    <CardImage srcSet={`${imgCard} 1x, ${imgCardRetina} 2x`} />
+                    <div>
+                      <CardDivLine>
+                        <CardAvatar src={avatar} />
+                      </CardDivLine>
+                    </div>
+                    <CardName>{user}</CardName>
+                    <CardTweet>tweets {tweets} </CardTweet>
+                    <CardFollowers>followers {followers} </CardFollowers>
+                    <CardButton
+                      type="button"
+                      style={{
+                        backgroundColor: following ? "#5CD3A8" : "#EBD8FF",
+                      }}
+                      onClick={() =>
+                        handleFollowClick(id, followers, following)
+                      }
+                    >
+                      {following ? "Following" : "Follow"}
+                    </CardButton>
+                  </CardItem>
+                );
+              }
+            )}
         </CardList>
       </CardWrapper>
       {cardItems < users.length && (

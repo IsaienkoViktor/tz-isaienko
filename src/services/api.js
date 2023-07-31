@@ -9,7 +9,7 @@ export const fetchAllUsers = async () => {
   return data;
 };
 
-export const editUser = async (user) => {
-  const { data } = await userApi.put("/users", user);
+export const editUser = async (id, user) => {
+  const { data } = await userApi.put(`/users/${id}`, user);
   return data;
 };

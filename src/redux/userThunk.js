@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { editUser, fetchAllUsers } from "../services/api";
 
 export const getUserThunk = createAsyncThunk(
-  "contacts/fetchAll",
+  "users/fetchAll",
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetchAllUsers();
@@ -14,11 +14,10 @@ export const getUserThunk = createAsyncThunk(
 );
 
 export const editUserThunk = createAsyncThunk(
-  "user/patch",
-  async ({ id, avatar, user, tweets, followers }, { rejectWithValue }) => {
+  "users/put",
+  async ({ id, user }, { rejectWithValue }) => {
     try {
-      const userData = { id, avatar, user, tweets, followers };
-      const response = await editUser(`/users/${id}`, userData);
+      const response = await editUser(id, user);
       return response;
     } catch (err) {
       return rejectWithValue(err.message);

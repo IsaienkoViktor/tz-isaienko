@@ -4,14 +4,14 @@ import { editUserThunk, getUserThunk } from "./userThunk";
 const userSlice = createSlice({
   name: "users",
   initialState: {
-    item: [],
+    items: [],
     error: null,
     isLoading: false,
   },
   extraReducers: (builder) => {
     builder
       .addCase(getUserThunk.fulfilled, (state, { payload }) => {
-        state.item = payload;
+        state.items = payload;
         state.error = null;
         state.isLoading = false;
       })
@@ -22,29 +22,9 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(editUserThunk.fulfilled, (state, { payload }) => {
-        state.item = payload;
-        state.error = null;
-        state.isLoading = false;
+        state.items.push(payload);
       });
   },
 });
-
-const userFilter = createSlice({
-  name: "filter",
-  initialState: {
-    name: "All",
-  },
-  reducers: {
-    setFilter(state, { payload }) {
-      state.filter = payload;
-    },
-  },
-});
-
-
-
-export const filterReducer = userFilter.reducer;
-
-export const { setFilter } = userFilter.actions;
 
 export const userReducer = userSlice.reducer;
