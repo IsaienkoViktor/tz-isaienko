@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { Container } from "./components/Container/Container";
 import { Card } from "./components/card/card";
 import { useDispatch } from "react-redux";
 import { getUserThunk } from "./redux/userThunk";
+import { Container } from "./components/container/Container.styled";
 
 function App() {
   const dispatch = useDispatch();
