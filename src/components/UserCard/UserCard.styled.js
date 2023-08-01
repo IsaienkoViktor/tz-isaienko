@@ -1,6 +1,16 @@
 import { styled } from "styled-components";
 
-export const CardWrapper = styled.div``;
+export const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0;
+  margin-left: 0;
+`;
+
+export const CardLabel = styled.label``;
 
 export const CardList = styled.ul`
   display: flex;

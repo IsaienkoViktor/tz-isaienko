@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectUsers } from "../../redux/userSelector";
+import { selectFilter, selectUsers } from "../../redux/userSelector";
 import {
   CardAvatar,
   CardButton,
@@ -8,6 +8,7 @@ import {
   CardFollowers,
   CardImage,
   CardItem,
+  CardLabel,
   CardList,
   CardLogo,
   CardName,
@@ -19,11 +20,13 @@ import imgCard from "../../project_svg/img@1x.png";
 import imgCardRetina from "../../project_svg/img@2x.png";
 import { useState } from "react";
 import { editUserThunk, getUserThunk } from "../../redux/userThunk";
+import { setFilter } from "../../redux/userSlice";
 
 export const UserCard = () => {
   const dispatch = useDispatch();
   const [cardItems, setCardItems] = useState(3);
   const users = useSelector(selectUsers);
+  const filter = useSelector(selectFilter);
 
   const handleFollowClick = (id, followers, following) => {
     if (following) {
@@ -53,11 +56,30 @@ export const UserCard = () => {
     setCardItems((prevCardItems) => prevCardItems + 3);
   };
 
+  const handleFilterChange = (event) => {
+    dispatch(setFilter(event.target.value));
+    setCardItems(3);
+  };
+
+  const filteredUsers = users.filter((user) => {
+    if (filter === "all") return true;
+    if (filter === "follow") return !user.following;
+    if (filter === "following") return user.following;
+    return true;
+  });
+
   return (
     <>
       <CardWrapper>
+        <CardLabel>
+          <select value={filter} onChange={handleFilterChange}>
+            <option value="all">All</option>
+            <option value="follow">Follow</option>
+            <option value="following">Following</option>
+          </select>
+        </CardLabel>
         <CardList>
-          {users
+          {filteredUsers
             .slice(0, cardItems)
             .map(
               ({ user, followers, tweets, avatar, id, following = false }) => {
@@ -74,7 +96,9 @@ export const UserCard = () => {
                     </div>
                     <CardName>{user}</CardName>
                     <CardTweet>tweets {tweets} </CardTweet>
-                    <CardFollowers>followers {followers} </CardFollowers>
+                    <CardFollowers>
+                      followers {followers.toLocaleString("en-US")}
+                    </CardFollowers>
                     <CardButton
                       type="button"
                       style={{
@@ -92,7 +116,7 @@ export const UserCard = () => {
             )}
         </CardList>
       </CardWrapper>
-      {cardItems < users.length && (
+      {cardItems < filteredUsers.length && (
         <CardButtonLoadMore type="button" onClick={handleLOadMore}>
           Load More
         </CardButtonLoadMore>

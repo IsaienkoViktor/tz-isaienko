@@ -13,3 +13,11 @@ export const editUser = async (id, user) => {
   const { data } = await userApi.put(`/users/${id}`, user);
   return data;
 };
+
+export const fetch = async () => {
+  const response = await axios.get(
+    "https://64ac30839edb4181202f410a.mockapi.io/users"
+  );
+  console.log(response);
+  return response.data;
+};

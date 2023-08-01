@@ -4,9 +4,15 @@ import { editUserThunk, getUserThunk } from "./userThunk";
 const userSlice = createSlice({
   name: "users",
   initialState: {
+    filter: "All",
     items: [],
     error: null,
     isLoading: false,
+  },
+  reducers: {
+    setFilter(state, { payload }) {
+      state.filter = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -26,5 +32,7 @@ const userSlice = createSlice({
       });
   },
 });
+
+export const { setFilter } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
