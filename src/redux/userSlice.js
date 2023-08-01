@@ -1,5 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { editUserThunk, getUserThunk } from "./userThunk";
+
+
+const rejectStatus = (state, { payload }) => {
+  state.error = payload;
+  state.isLoading = false;
+  }
+
+const pendingStatus = (state) => {
+  state.isLoading = true;
+}  
 
 const userSlice = createSlice({
   name: "users",
@@ -21,15 +31,11 @@ const userSlice = createSlice({
         state.error = null;
         state.isLoading = false;
       })
-      .addCase(getUserThunk.rejected, (state, { payload }) => {
-        state.error = payload;
-      })
-      .addCase(getUserThunk.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(editUserThunk.fulfilled, (state, { payload }) => {
         state.items.push(payload);
-      });
+      })
+      .addMatcher(isAnyOf(getUserThunk.rejected, editUserThunk.rejected), rejectStatus)
+      .addMatcher(isAnyOf(getUserThunk.pending, editUserThunk.pending), pendingStatus)
   },
 });
 

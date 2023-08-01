@@ -1,14 +1,19 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getUserThunk } from "./redux/userThunk";
-import { UserCard } from "./components/UserCard/UserCard";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import { Layout } from "./components/Layout/Layout";
+import { HomePage } from "./pages/Homepage/HomePage";
+import { TweetsPage } from "./pages/TweetsPage/TweetsPage";
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUserThunk());
-  }, [dispatch]);
-  return <UserCard />;
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="TweetsPage" element={<TweetsPage />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  );
 }
 
 export default App;

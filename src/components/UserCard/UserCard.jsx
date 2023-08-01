@@ -15,10 +15,10 @@ import {
   CardTweet,
   CardWrapper,
 } from "./UserCard.styled";
-import logo from "/src/project_svg/logo.svg";
-import imgCard from "../../project_svg/img@1x.png";
-import imgCardRetina from "../../project_svg/img@2x.png";
-import { useState } from "react";
+import logo from "/src/images/logo.svg";
+import imgCard from "../../images/img@1x.png";
+import imgCardRetina from "../../images/img@2x.png";
+import { useEffect, useState } from "react";
 import { editUserThunk, getUserThunk } from "../../redux/userThunk";
 import { setFilter } from "../../redux/userSlice";
 
@@ -27,6 +27,14 @@ export const UserCard = () => {
   const [cardItems, setCardItems] = useState(3);
   const users = useSelector(selectUsers);
   const filter = useSelector(selectFilter);
+
+  useEffect(() => {
+    dispatch(getUserThunk());
+  }, [dispatch]);
+
+  const handleLOadMore = () => {
+    setCardItems((prevCardItems) => prevCardItems + 3);
+  };
 
   const handleFollowClick = (id, followers, following) => {
     if (following) {
@@ -50,10 +58,6 @@ export const UserCard = () => {
         })
       ).then(() => dispatch(getUserThunk()));
     }
-  };
-
-  const handleLOadMore = () => {
-    setCardItems((prevCardItems) => prevCardItems + 3);
   };
 
   const handleFilterChange = (event) => {
