@@ -13,14 +13,14 @@ import {
   CardName,
   CardTweet,
   CardWrapper,
-} from "./Card.styled";
+} from "./UserCard.styled";
 import logo from "/src/project_svg/logo.svg";
 import imgCard from "../../project_svg/img@1x.png";
 import imgCardRetina from "../../project_svg/img@2x.png";
 import { useState } from "react";
 import { editUserThunk, getUserThunk } from "../../redux/userThunk";
 
-export const Card = () => {
+export const UserCard = () => {
   const dispatch = useDispatch();
   const [cardItems, setCardItems] = useState(3);
   const users = useSelector(selectUsers);
