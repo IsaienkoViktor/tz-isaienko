@@ -1,22 +1,19 @@
 import { NavLink } from "react-router-dom";
+import { NavLinkStyled, NavList, NavStyled } from "./Navigation.styled";
 
 export const Navigation = () => {
   return (
-    <div>
-      <nav>
-        <ul>
+    <>
+      <NavStyled>
+        <NavList>
           <li>
-            <NavLink to="/">
-              <span>Home</span>
-            </NavLink>
+            <NavLinkStyled to="/">Home</NavLinkStyled>
           </li>
           <li>
-            <NavLink to="/TweetsPage">
-              <span>Tweets</span>
-            </NavLink>
+            <NavLinkStyled to="/TweetsPage">Tweets</NavLinkStyled>
           </li>
-        </ul>
-      </nav>
-    </div>
+        </NavList>
+      </NavStyled>
+    </>
   );
 };

@@ -82,43 +82,61 @@ export const UserCard = () => {
             <option value="following">Following</option>
           </select>
         </CardLabel>
-        <CardList>
-          {filteredUsers
-            .slice(0, cardItems)
-            .map(
-              ({ user, followers, tweets, avatar, id, following = false }) => {
-                return (
-                  <CardItem key={id}>
-                    <a href="">
-                      <CardLogo src={logo} />
-                    </a>
-                    <CardImage srcSet={`${imgCard} 1x, ${imgCardRetina} 2x`} />
-                    <div>
-                      <CardDivLine>
-                        <CardAvatar src={avatar} />
-                      </CardDivLine>
-                    </div>
-                    <CardName>{user}</CardName>
-                    <CardTweet>tweets {tweets} </CardTweet>
-                    <CardFollowers>
-                      followers {followers.toLocaleString("en-US")}
-                    </CardFollowers>
-                    <CardButton
-                      type="button"
-                      style={{
-                        backgroundColor: following ? "#5CD3A8" : "#EBD8FF",
-                      }}
-                      onClick={() =>
-                        handleFollowClick(id, followers, following)
-                      }
-                    >
-                      {following ? "Following" : "Follow"}
-                    </CardButton>
-                  </CardItem>
-                );
-              }
-            )}
-        </CardList>
+        {filteredUsers.length === 0 ? (
+          <span>No tweets here yet ... </span>
+        ) : (
+          <CardList>
+            {filteredUsers
+              .slice(0, cardItems)
+              .map(
+                ({
+                  user,
+                  followers,
+                  tweets,
+                  avatar,
+                  id,
+                  following = false,
+                }) => {
+                  return (
+                    <CardItem key={id}>
+                      <a
+                        href="https://goit.global/ua-ru/"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label="goit main page"
+                      >
+                        <CardLogo src={logo} />
+                      </a>
+                      <CardImage
+                        srcSet={`${imgCard} 1x, ${imgCardRetina} 2x`}
+                      />
+                      <div>
+                        <CardDivLine>
+                          <CardAvatar src={avatar} />
+                        </CardDivLine>
+                      </div>
+                      <CardName>{user}</CardName>
+                      <CardTweet>tweets {tweets} </CardTweet>
+                      <CardFollowers>
+                        followers {followers.toLocaleString("en-US")}
+                      </CardFollowers>
+                      <CardButton
+                        type="button"
+                        style={{
+                          backgroundColor: following ? "#5CD3A8" : "#EBD8FF",
+                        }}
+                        onClick={() =>
+                          handleFollowClick(id, followers, following)
+                        }
+                      >
+                        {following ? "Following" : "Follow"}
+                      </CardButton>
+                    </CardItem>
+                  );
+                }
+              )}
+          </CardList>
+        )}
       </CardWrapper>
       {cardItems < filteredUsers.length && (
         <CardButtonLoadMore type="button" onClick={handleLOadMore}>

@@ -6,11 +6,14 @@ export const CardWrapper = styled.div`
   gap: 20px;
   justify-content: center;
   align-items: center;
-  margin-right: 0;
-  margin-left: 0;
 `;
 
-export const CardLabel = styled.label``;
+export const CardLabel = styled.label`
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 36px;
+  align-items: center;
+`;
 
 export const CardList = styled.ul`
   display: flex;
@@ -74,45 +77,17 @@ export const CardAvatar = styled.img`
 `;
 
 export const CardName = styled.span`
-  color: #ebd8ff;
-  font-family: Montserrat;
-  font-size: 20px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
 `;
 
-export const CardTweet = styled.span`
-  color: #ebd8ff;
-  font-family: Montserrat;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  text-transform: uppercase;
-`;
+export const CardTweet = styled.span``;
 
-export const CardFollowers = styled.span`
-  color: #ebd8ff;
-  font-family: Montserrat;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  text-transform: uppercase;
-`;
+export const CardFollowers = styled.span``;
 
 export const CardButtonLoadMore = styled.button`
   margin-left: auto;
   margin-right: auto;
   margin-top: 36px;
-  font-family: Montserrat;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  text-transform: uppercase;
-  color: #373737;
   display: flex;
   width: 196px;
   padding: 14px 28px;

@@ -16,7 +16,6 @@ export const Loader = () => {
         strokeWidth={2}
         strokeWidthSecondary={2}
       />
-      <span>Loading...</span>
     </LoaderWrapper>
   );
 };
