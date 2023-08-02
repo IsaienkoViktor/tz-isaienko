@@ -4,6 +4,7 @@ import {
   StyledHomeText,
   StyledHomeWrapper,
 } from "./HomePage.styled";
+import imgCard from "../../images/img@1x.png";
 
 export const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ export const HomePage = () => {
         <NavLink to="/TweetsPage">
           <StyledHomeButton type="button">Tweets</StyledHomeButton>
         </NavLink>
+        <img src={imgCard} alt="chat picture" />
       </StyledHomeWrapper>
     </>
   );

@@ -6,7 +6,7 @@ export const StyledHomeWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 36px;
+  gap: 72px;
 `;
 
 export const StyledHomeText = styled.span`

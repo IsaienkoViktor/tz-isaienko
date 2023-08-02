@@ -5,6 +5,7 @@ import {
   CardButton,
   CardButtonLoadMore,
   CardDivLine,
+  CardEmpty,
   CardFollowers,
   CardImage,
   CardItem,
@@ -14,10 +15,14 @@ import {
   CardName,
   CardTweet,
   CardWrapper,
+  StyledOption,
+  StyledSelect,
 } from "./UserCard.styled";
 import logo from "/src/images/logo.svg";
 import imgCard from "../../images/img@1x.png";
 import imgCardRetina from "../../images/img@2x.png";
+import imgW from "../../images/imgW@1x.webp";
+import imgWRetina from "../../images/imgWRetina@2x.webp";
 import { useEffect, useState } from "react";
 import { editUserThunk, getUserThunk } from "../../redux/userThunk";
 import { setFilter } from "../../redux/userSlice";
@@ -76,14 +81,14 @@ export const UserCard = () => {
     <>
       <CardWrapper>
         <CardLabel>
-          <select value={filter} onChange={handleFilterChange}>
-            <option value="all">All</option>
-            <option value="follow">Follow</option>
-            <option value="following">Following</option>
-          </select>
+          <StyledSelect value={filter} onChange={handleFilterChange}>
+            <StyledOption value="all">All</StyledOption>
+            <StyledOption value="follow">Follow</StyledOption>
+            <StyledOption value="following">Following</StyledOption>
+          </StyledSelect>
         </CardLabel>
         {filteredUsers.length === 0 ? (
-          <span>No tweets here yet ... </span>
+          <CardEmpty>No tweets here for now ... </CardEmpty>
         ) : (
           <CardList>
             {filteredUsers
@@ -107,9 +112,17 @@ export const UserCard = () => {
                       >
                         <CardLogo src={logo} />
                       </a>
-                      <CardImage
-                        srcSet={`${imgCard} 1x, ${imgCardRetina} 2x`}
-                      />
+                      <CardImage>
+                        <source
+                          srcSet={`${imgCard} 1x, ${imgCardRetina} 2x`}
+                          type="image/png"
+                        ></source>
+                        <source
+                          srcSet={`${imgW} 1x, ${imgWRetina} 2x`}
+                          type="image/webp"
+                        ></source>
+                        <img src={imgCard} alt="chat image" />
+                      </CardImage>
                       <div>
                         <CardDivLine>
                           <CardAvatar src={avatar} />

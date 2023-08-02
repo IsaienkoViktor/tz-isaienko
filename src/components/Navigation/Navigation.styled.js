@@ -13,6 +13,8 @@ export const NavList = styled.ul`
   gap: 12px;
 `;
 
+export const NavItem = styled.li``;
+
 export const NavLinkStyled = styled(NavLink)`
   color: #ebd8ff;
   font-family: Montserrat;
@@ -20,10 +22,11 @@ export const NavLinkStyled = styled(NavLink)`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  text-transform: uppercase;
+  transition: all 150ms ease-in-out;
   &:hover,
   &:focus,
-  &active {
+  &:active {
+    text-decoration: underline;
     color: yellow;
   }
 `;

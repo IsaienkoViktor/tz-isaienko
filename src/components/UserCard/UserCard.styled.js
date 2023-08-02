@@ -8,13 +8,6 @@ export const CardWrapper = styled.div`
   align-items: center;
 `;
 
-export const CardLabel = styled.label`
-  margin-right: 0;
-  margin-left: 0;
-  margin-bottom: 36px;
-  align-items: center;
-`;
-
 export const CardList = styled.ul`
   display: flex;
   justify-content: center;
@@ -48,7 +41,7 @@ export const CardLogo = styled.img`
   }
 `;
 
-export const CardImage = styled.img`
+export const CardImage = styled.picture`
   margin-top: 10px;
   margin-bottom: 68px;
 `;
@@ -83,6 +76,11 @@ export const CardName = styled.span`
 export const CardTweet = styled.span``;
 
 export const CardFollowers = styled.span``;
+
+export const CardEmpty = styled.span`
+  text-transform: capitalize;
+  font-size: 32px;
+`;
 
 export const CardButtonLoadMore = styled.button`
   margin-left: auto;
@@ -132,4 +130,30 @@ export const CardButton = styled.button`
     cursor: pointer;
     transform: scale(1.03);
   }
+`;
+
+export const StyledSelect = styled.select`
+  padding-left: 20px;
+  width: 196px;
+  height: 40px;
+  background-color: transparent;
+  color: #ebd8ff;
+  border-radius: 10.311px;
+  box-shadow: 0px 3.4369285106658936px 3.4369285106658936px 0px
+    rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  font-size: 18px;
+  align-items: center;
+`;
+
+export const CardLabel = styled.label`
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 36px;
+  align-items: center;
+`;
+
+export const StyledOption = styled.option`
+  color: #373737;
+  background-color: #ebd8ff;
 `;
